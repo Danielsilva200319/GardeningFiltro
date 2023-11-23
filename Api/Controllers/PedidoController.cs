@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.Dtos;
 using AutoMapper;
+using AutoMapper.Configuration.Annotations;
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,12 @@ namespace Api.Controllers
             }
             return _mapper.Map<PedidoDto>(pedidos);
         }
+        /* [HttpGet("Listado Pedidos Rechazados/{id}")]
+        public async Task<List<object>> GetConsulta1()
+        {
+            var consulta = await _unitOfWork.Pedidos.getConsulta1().ConfigureAwait(false);
+            return Ok(consulta);
+        } */
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
