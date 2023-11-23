@@ -1,5 +1,5 @@
-CREATE DATABASE jardineria;
-USE jardineria;
+CREATE DATABASE garden;
+USE garden;
 
 CREATE TABLE oficina (
   codigo_oficina VARCHAR(10) NOT NULL,
