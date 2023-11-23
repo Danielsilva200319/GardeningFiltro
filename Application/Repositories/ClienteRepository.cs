@@ -16,5 +16,10 @@ namespace Application.Repositories
         {
             _context = context;
         }
+        /* public Task<IQueryable<string>> getConsulta8()
+        {
+            var consulta = from cliente in _context.Clientes
+                            join pedidos in _context.Pedidos
+        } */
     }
 }

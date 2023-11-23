@@ -42,12 +42,12 @@ namespace Api.Controllers
             }
             return _mapper.Map<PedidoDto>(pedidos);
         }
-        /* [HttpGet("Listado Pedidos Rechazados/{id}")]
-        public async Task<List<object>> GetConsulta1()
+        [HttpGet("Listado Pedidos Rechazados")]
+        public async Task<ActionResult> GetConsulta1()
         {
             var consulta = await _unitOfWork.Pedidos.getConsulta1().ConfigureAwait(false);
             return Ok(consulta);
-        } */
+        }
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

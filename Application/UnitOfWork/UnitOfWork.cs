@@ -61,7 +61,7 @@ namespace Application.UnitOfWork
             }
         }
 
-        public IGamaProducto GamaProductoS
+        public IGamaProducto GamaProductos
         {
             get
             {

@@ -8,6 +8,6 @@ namespace Domain.Interfaces
 {
     public interface IPedido : IGenericRepository<Pedido>
     {
-        /* public Task<List<object>> getConsulta1(); */
+        public Task<IQueryable<string>> getConsulta1();
     }
 }
