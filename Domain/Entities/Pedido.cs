@@ -10,7 +10,7 @@ public partial class Pedido
 
     public DateOnly FechaEsperada { get; set; }
 
-    public DateOnly? FechaEntrega { get; set; }
+    public DateOnly FechaEntrega { get; set; }
 
     public string Estado { get; set; } = null!;
 
