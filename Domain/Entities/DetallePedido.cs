@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Persistence.Entities;
-
+namespace Domain.Entities;
 public partial class DetallePedido
 {
     public int CodigoPedido { get; set; }

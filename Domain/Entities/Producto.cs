@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Persistence.Entities;
-
+namespace Domain.Entities;
 public partial class Producto
 {
     public string CodigoProducto { get; set; } = null!;
@@ -11,11 +10,11 @@ public partial class Producto
 
     public string Gama { get; set; } = null!;
 
-    public string? Dimensiones { get; set; }
+    public string Dimensiones { get; set; }
 
-    public string? Proveedor { get; set; }
+    public string Proveedor { get; set; }
 
-    public string? Descripcion { get; set; }
+    public string Descripcion { get; set; }
 
     public short CantidadEnStock { get; set; }
 
