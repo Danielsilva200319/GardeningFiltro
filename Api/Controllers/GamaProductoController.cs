@@ -10,12 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    public class ClienteController : ApiController
+    public class GamaProductoController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public ClienteController(IUnitOfWork unitOfWork, IMapper mapper)
+        public GamaProductoController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -23,72 +23,72 @@ namespace Api.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<ClienteDto>>> Get()
+        public async Task<ActionResult<IEnumerable<GamaProductoDto>>> Get()
         {
-            var cliente = await _unitOfWork.Clientes.GetAllAsync();
-            return _mapper.Map<List<ClienteDto>>(cliente);
+            var gamaProducto = await _unitOfWork.Clientes.GetAllAsync();
+            return _mapper.Map<List<GamaProductoDto>>(gamaProducto);
         }
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ClienteDto>> Get(int id)
+        public async Task<ActionResult<GamaProductoDto>> Get(string id)
         {
-            var clientes = await _unitOfWork.Clientes.GetByIdAsync(id);
-            if (clientes == null)
+            var gamaProductos = await _unitOfWork.GamaProductos.GetByIdAsync(int.Parse(id));
+            if (gamaProductos == null)
             {
                 return NotFound();
             }
-            return _mapper.Map<ClienteDto>(clientes);
+            return _mapper.Map<GamaProductoDto>(gamaProductos);
         }
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-        public async Task<ActionResult<ClienteDto>> Post(ClienteDto clienteDto)
+        public async Task<ActionResult<GamaProductoDto>> Post(GamaProductoDto gamaProductoDto)
         {
-            var cliente = _mapper.Map<Cliente>(clienteDto);
-            _unitOfWork.Clientes.Add(cliente);
+            var gamaProducto = _mapper.Map<GamaProducto>(gamaProductoDto);
+            _unitOfWork.GamaProductos.Add(gamaProducto);
             await _unitOfWork.SaveAsync();
-            if (cliente == null)
+            if (gamaProducto == null)
             {
                 return BadRequest();
             }
-            clienteDto.CodigoCliente = cliente.CodigoCliente;
-            return CreatedAtAction(nameof(Post), new {id = clienteDto.CodigoCliente}, clienteDto);
+            gamaProductoDto.Gama = gamaProductoDto.Gama;
+            return CreatedAtAction(nameof(Post), new {id = gamaProductoDto.Gama}, gamaProductoDto);
         }
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public async Task<ActionResult<ClienteDto>> Put(int id, ClienteDto clienteDto)
+        public async Task<ActionResult<GamaProductoDto>> Put(string id, GamaProductoDto gamaProductoDto)
         {
-            if (clienteDto.CodigoCliente == 0){
-                clienteDto.CodigoCliente = id;
+            if (gamaProductoDto.Gama == "0"){
+                gamaProductoDto.Gama = id;
             }
-            if (clienteDto.CodigoCliente != id){
+            if (gamaProductoDto.Gama != id){
                 return BadRequest();
             }
-            if (clienteDto == null){
+            if (gamaProductoDto == null){
                 return NotFound();
             }
-            var clientes = _mapper.Map<Cliente>(clienteDto);
-            _unitOfWork.Clientes.Update(clientes);
+            var gamaProductos = _mapper.Map<GamaProducto>(gamaProductoDto);
+            _unitOfWork.GamaProductos.Update(gamaProductos);
             await _unitOfWork.SaveAsync();
-            return _mapper.Map<ClienteDto>(clientes);
+            return _mapper.Map<GamaProductoDto>(gamaProductos);
         }
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            var cliente = await _unitOfWork.Clientes.GetByIdAsync(id);
-            if (cliente == null)
+            var gamaProducto = await _unitOfWork.GamaProductos.GetByIdAsync(int.Parse(id));
+            if (gamaProducto == null)
             {
                 return NotFound();
             }
-            _unitOfWork.Clientes.Remove(cliente);
+            _unitOfWork.GamaProductos.Remove(gamaProducto);
             await _unitOfWork.SaveAsync();
             return NoContent();
         }

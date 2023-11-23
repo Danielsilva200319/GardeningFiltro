@@ -10,7 +10,7 @@ namespace Domain.Interfaces
         ICliente Clientes { get; }
         IDetallePedido DetallePedidos { get; }
         IEmpleado Empleados { get; }
-        IGamaProducto GamaProductoS { get; }
+        IGamaProducto GamaProductos { get; }
         IOficina Oficinas { get; }
         IPago Pagos { get; }
         IPedido Pedidos { get; }
